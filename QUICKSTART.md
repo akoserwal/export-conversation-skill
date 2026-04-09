@@ -7,14 +7,14 @@ Get up and running with export-conversation in under 2 minutes!
 ### Option 1: One-Line Install (Recommended)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/export-conversation-skill.git && cd export-conversation-skill && ./install.sh
+git clone https://github.com/akoserwal/export-conversation-skill.git && cd export-conversation-skill && ./install.sh
 ```
 
 ### Option 2: Manual Install
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/export-conversation-skill.git
+git clone https://github.com/akoserwal/export-conversation-skill.git
 
 # Create symlink to Claude skills directory
 ln -s $(pwd)/export-conversation-skill ~/.claude/skills/export-conversation
@@ -43,19 +43,19 @@ That's it! You'll find `my-first-export.md` in your current directory.
 
 ### Auto-Timestamped Export
 ```
-/export-conversation
+/export-conversation:export
 ```
 Creates: `conversation-export-2026-04-08-143022.md`
 
 ### Named Export
 ```
-/export-conversation feature-planning
+/export-conversation:export feature-planning
 ```
 Creates: `feature-planning.md`
 
 ### Export to Specific Directory
 ```
-/export-conversation docs/sessions/code-review
+/export-conversation:export docs/sessions/code-review
 ```
 Creates: `docs/sessions/code-review.md`
 

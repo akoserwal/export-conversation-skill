@@ -27,26 +27,37 @@
 
 ### Installation
 
+#### From Claude Code CLI (Recommended)
+
+Once this plugin is available in a marketplace:
+
+```bash
+/plugin install export-conversation
+```
+
+#### Manual Installation
+
 1. **Clone or download this repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/export-conversation-skill.git
+   git clone https://github.com/akoserwal/export-conversation-skill.git
    ```
 
-2. **Install the skill:**
+2. **Load the plugin:**
    ```bash
-   # Copy to Claude Code skills directory
-   cp -r export-conversation-skill ~/.claude/skills/export-conversation
+   # Test locally during development
+   claude --plugin-dir ./export-conversation-skill
    
-   # Or create a symlink for easier development
-   ln -s $(pwd)/export-conversation-skill ~/.claude/skills/export-conversation
+   # Or install permanently by copying to plugins directory
+   cp -r export-conversation-skill ~/.claude/plugins/export-conversation
    ```
 
 3. **Verify installation:**
    ```bash
-   ls ~/.claude/skills/export-conversation/SKILL.md
+   # In Claude Code session
+   /help
    ```
-
-The skill is now available in all your Claude Code sessions!
+   
+   You should see `/export-conversation:export` listed under available skills.
 
 ## Usage
 
@@ -54,7 +65,7 @@ The skill is now available in all your Claude Code sessions!
 
 Export current conversation with auto-generated timestamp:
 ```bash
-/export-conversation
+/export-conversation:export
 ```
 Creates: `conversation-export-2026-04-08-203940.md`
 
@@ -62,7 +73,7 @@ Creates: `conversation-export-2026-04-08-203940.md`
 
 Export to a specific filename:
 ```bash
-/export-conversation my-session
+/export-conversation:export my-session
 ```
 Creates: `my-session.md`
 
@@ -70,9 +81,11 @@ Creates: `my-session.md`
 
 Export to a specific directory:
 ```bash
-/export-conversation docs/sessions/planning-session
+/export-conversation:export docs/sessions/planning-session
 ```
 Creates: `docs/sessions/planning-session.md`
+
+**Note:** Plugin skills are namespaced (`:export`) to prevent conflicts with other plugins.
 
 ## What Gets Exported
 

@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# Installation script for export-conversation Claude Code skill
+# Installation script for export-conversation Claude Code plugin
 # Usage: ./install.sh
 
 set -e
 
-echo "🚀 Installing export-conversation skill..."
+echo "🚀 Installing export-conversation plugin..."
 
 # Define paths
-SKILL_NAME="export-conversation"
-CLAUDE_SKILLS_DIR="$HOME/.claude/skills"
-TARGET_DIR="$CLAUDE_SKILLS_DIR/$SKILL_NAME"
+PLUGIN_NAME="export-conversation"
+CLAUDE_PLUGINS_DIR="$HOME/.claude/plugins"
+TARGET_DIR="$CLAUDE_PLUGINS_DIR/$PLUGIN_NAME"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Create skills directory if it doesn't exist
-if [ ! -d "$CLAUDE_SKILLS_DIR" ]; then
-    echo "📁 Creating Claude skills directory..."
-    mkdir -p "$CLAUDE_SKILLS_DIR"
+# Create plugins directory if it doesn't exist
+if [ ! -d "$CLAUDE_PLUGINS_DIR" ]; then
+    echo "📁 Creating Claude plugins directory..."
+    mkdir -p "$CLAUDE_PLUGINS_DIR"
 fi
 
 # Check if skill already exists
@@ -47,19 +47,20 @@ echo "🔗 Creating symlink..."
 ln -s "$SCRIPT_DIR" "$TARGET_DIR"
 
 # Verify installation
-if [ -f "$TARGET_DIR/SKILL.md" ]; then
+if [ -f "$TARGET_DIR/.claude-plugin/plugin.json" ]; then
     echo "✅ Installation successful!"
     echo ""
-    echo "The export-conversation skill is now available in Claude Code."
-    echo "Usage: /export-conversation [optional-filename]"
+    echo "The export-conversation plugin is now available in Claude Code."
+    echo "Usage: /export-conversation:export [optional-filename]"
     echo ""
     echo "Examples:"
-    echo "  /export-conversation                    # Auto-timestamped filename"
-    echo "  /export-conversation my-session         # Custom filename"
-    echo "  /export-conversation docs/session       # Custom path"
+    echo "  /export-conversation:export                    # Auto-timestamped filename"
+    echo "  /export-conversation:export my-session         # Custom filename"
+    echo "  /export-conversation:export docs/session       # Custom path"
     echo ""
+    echo "Run 'claude' to start a new session, or /reload-plugins in an existing session."
     echo "📖 See README.md for full documentation"
 else
-    echo "❌ Installation failed - SKILL.md not found"
+    echo "❌ Installation failed - plugin.json not found"
     exit 1
 fi
